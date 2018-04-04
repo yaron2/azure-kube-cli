@@ -33,7 +33,7 @@ The argument for the source parameter is either the URL download path (the exten
 
 For example, to install version 0.0.1
 
-`az extension add --source 'https://github.com/yaron2/azure-kube-cli-extension/releases/download/v0.0.1/azure_kube_cli-0.0.1-py2.py3-none-any.whl'`
+`az extension add --source 'https://github.com/yaron2/azure-kube-cli/releases/download/0.0.1/azure_kube_cli-0.0.1-py2.py3-none-any.whl'`
 
 ## Command-Line Usage
 
