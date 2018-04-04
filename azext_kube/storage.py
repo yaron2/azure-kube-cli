@@ -1,3 +1,5 @@
+# Taken from https://github.com/noelbundick/azure-cli-disk-copy-extension
+
 import random
 import re
 import time
