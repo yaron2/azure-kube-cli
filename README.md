@@ -63,11 +63,11 @@ Global Arguments
 
 ### migrate an ACS cluster to AKS
 
-`az kube copy-volumes --source-acs-name=myacs --target-aks-name=myaks"`
+`az kube copy-volumes --source-acs-name=myacs --target-aks-name=myaks`
 
 ### migrate and use your own source and target kubeconfigs
 
-`az kube copy-volumes --source-kubeconfig=~/.source --target-kubeconfig=~/.target --source-acs-name=myacs --target-aks-name=myaks"`
+`az kube copy-volumes --source-kubeconfig=~/.source --target-kubeconfig=~/.target --source-acs-name=myacs --target-aks-name=myaks`
 
 ## Development
 
