@@ -62,7 +62,7 @@ def get_pvs_from_source(kubeconfig_path):
 
     if not pvs:
         raise CLIError(
-            "Dude/Dudette, there were no PVs in the first place.. why waste cpu cycles for nothing?")
+            "No Persistent Volumes found to migrate")
 
     return pvs
 
