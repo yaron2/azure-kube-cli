@@ -1,4 +1,4 @@
-# Azure CLI Extension for ACS to AKS Cluster Migration
+# Azure CLI Extension for ACS/AKS Infrastructure Operations
 
 ![Python](https://img.shields.io/pypi/pyversions/azure-cli.svg?maxAge=2592000)
 
