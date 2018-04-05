@@ -61,7 +61,7 @@ Commands:
 
 ### migrate an ACS cluster to AKS
 
-`az kube copy-volumes --source-acs-name=myacs --target-aks-name=myaks`
+`az kube copy-volumes --source-acs-name=myacs --target-aks-name=myaks --acs-resourcegroup=rg1 --aks-resourcegroup=rg2`
 
 ### migrate and use your own source and target kubeconfigs
 
