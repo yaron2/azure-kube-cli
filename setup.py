@@ -24,8 +24,7 @@ CLASSIFIERS = [
 ]
 
 DEPENDENCIES = [
-    'kubernetes',
-    'polling'
+    'kubernetes'
 ]
 
 setup(
