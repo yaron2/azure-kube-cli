@@ -13,6 +13,7 @@ class KubeCommandsLoader(AzCommandsLoader):
     def load_command_table(self, args):
         with self.command_group('kube') as g:
             g.custom_command('copy-volumes', 'copy_volumes')
+            g.custom_command('export', 'export_cluster_to_dir')
         return self.command_table
 
     def load_arguments(self, _):
@@ -21,6 +22,9 @@ class KubeCommandsLoader(AzCommandsLoader):
             c.argument('target_aks_name', options_list=['--target-aks-name'])
             c.argument('source_kubeconfig', options_list=['--source-kubeconfig'])
             c.argument('target_kubeconfig', options_list=['--target-kubeconfig'])
+        with self.argument_context('kube export') as c:
+            c.argument('kubeconfig_path', options_list=['--kubeconfig'])
+            c.argument('output_dir', options_list=['--output-dir'])
 
 
 COMMAND_LOADER_CLS = KubeCommandsLoader

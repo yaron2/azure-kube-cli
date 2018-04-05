@@ -32,8 +32,7 @@ def get_clusters_info(source_acs_name, target_aks_name):
     target_mc_resource_group = 'mc_{0}_{1}_{2}'.format(target_resource_group, target_aks['name'], target_aks['location'])
     target_location = target_aks['location']
 
-    ClusterInfo = namedtuple(
-        'ClusterInfo', 'acs_resource_group aks_resource_group aks_mc_resource_group acs_name aks_name acs_location aks_location')
+    ClusterInfo = namedtuple('ClusterInfo', 'acs_resource_group aks_resource_group aks_mc_resource_group acs_name aks_name acs_location aks_location')
 
     info = ClusterInfo(acs_resource_group=source_resource_group, acs_name=source_acs_name,
                        aks_mc_resource_group=target_mc_resource_group, aks_resource_group=target_resource_group,
@@ -65,6 +64,11 @@ def get_pvs_from_source(kubeconfig_path):
             "No Persistent Volumes found to migrate")
 
     return pvs
+
+
+def export_cluster_to_dir(kubeconfig_path, output_dir = os.getcwd()):
+    kubewrapper.export_cluster_to_dir(kubeconfig_path, output_dir)
+    print("Cluster exported successfully")
 
 
 def copy_volumes(source_acs_name, target_aks_name, source_kubeconfig=None, target_kubeconfig=None):

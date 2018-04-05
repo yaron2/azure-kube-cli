@@ -4,12 +4,13 @@
 
 This CLI extension allows for various general purpose operations for Kubernetes clusters running on Azure.
 
-Currently supports migration of Persistent Volumes and Data Disks between a source ACS (Azure Container Service) cluster and a target AKS (Managed Kubernetes) cluster.
+Currently supports migration of Persistent Volumes and Data Disks between a source ACS (Azure Container Service) cluster and a target AKS (Managed Kubernetes) cluster as well as export the entire cluster state for backup/restore scenarios.
 
 ## Features
 
 The CLI extension will let you:
 
+- Take a snapshot of cluster state for back/restore purposes
 - Migrate Persistent Volumes resources from ACS to AKS
 - Move Unmanaged Data Disks from ACS to AKS 
 - Move Managed Data Disks from ACS to AKS
@@ -38,25 +39,12 @@ For example, to install version 0.0.1
 ## Command-Line Usage
 
 ```bash
-Command
-    az kube copy-volumes: Copy Persistent Volumes from ACS to AKS.
-        Creates Managed Disks in target AKS resource group using storage snapshots and copies PV k8s
-        resources from ACS cluster to AKS. Supports cross-region copies.
+Group
+    az kube
 
-Arguments
-    --source-acs-name [Required]: Name of the source ACS instance.
-    --target-aks-name [Required]: Name of the target AKS instance.
-    --source-kubeconfig         : Path to the source cluster kubeconfig file.
-    --target-kubeconfig         : Path to the target cluster kubeconfig file.
-
-Global Arguments
-    --debug                     : Increase logging verbosity to show all debug logs.
-    --help -h                   : Show this help message and exit.
-    --output -o                 : Output format.  Allowed values: json, jsonc, table, tsv.  Default:
-                                  json.
-    --query                     : JMESPath query string. See http://jmespath.org/ for more
-                                  information and examples.
-    --verbose                   : Increase logging verbosity. Use --debug for full debug logs.
+Commands:
+    copy-volumes: Copy Persistent Volumes from ACS to AKS.
+    export      : Export a Kubernetes cluster's resources to disk.
 ```
 
 ## Usage Examples
@@ -68,6 +56,14 @@ Global Arguments
 ### migrate and use your own source and target kubeconfigs
 
 `az kube copy-volumes --source-kubeconfig=~/.source --target-kubeconfig=~/.target --source-acs-name=myacs --target-aks-name=myaks`
+
+### Backups a cluster's state
+
+`az kube export --kubeconfig=./myconfig`
+
+### Backups a cluster's state to a custom dir
+
+`az kube export --kubeconfig=./myconfig --output-dir=./backup`
 
 ## Development
 

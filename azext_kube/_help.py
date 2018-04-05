@@ -27,3 +27,22 @@ helps['kube copy-volumes'] = """
           text: >
             az kube copy-volumes --source-kubeconfig=/.myconfig --source-acs-name=acs-cluster --target-aks-name=aks-cluster
 """
+
+helps['kube export'] = """
+    type: command
+    short-summary: Export a Kubernetes cluster's resources to disk
+    long-summary: >
+        Export deployments, replication controllers, secrets, limits, quotas, deployments, services, config maps, daemon sets, stateful sets
+        and horizontal pod autoscalers to disk in a format that allows for a later restore
+    parameters:
+        - name: --kubeconfig
+          type: string
+          short-summary: Path to the cluster kubeconfig file
+        - name: --output-dir
+          type: string
+          short-summary: The directory to write the backup to
+    examples:
+        - name: Export a cluster to dir
+          text: >
+            az kube export --kubeconfig=./myconfig --output-dir=./cluster
+"""
