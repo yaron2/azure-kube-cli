@@ -1,5 +1,10 @@
 from knack.help_files import helps
 
+helps['kube'] = """
+    type: group
+    short-summary: Infrastructure operations for Azure Kubernetes clusters.
+"""
+
 helps['kube copy-volumes'] = """
     type: command
     short-summary: Copy Persistent Volumes from ACS to AKS.
