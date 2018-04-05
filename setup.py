@@ -23,7 +23,9 @@ CLASSIFIERS = [
     'License :: OSI Approved :: MIT License',
 ]
 
-DEPENDENCIES = []
+DEPENDENCIES = [
+    'kubernetes'
+]
 
 setup(
     name='azure-kube-cli',
