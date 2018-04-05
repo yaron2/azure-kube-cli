@@ -20,6 +20,8 @@ class KubeCommandsLoader(AzCommandsLoader):
         with self.argument_context('kube copy-volumes') as c:
             c.argument('source_acs_name', options_list=['--source-acs-name'])
             c.argument('target_aks_name', options_list=['--target-aks-name'])
+            c.argument('acs_resource_group', options_list=['--acs-resourcegroup'])
+            c.argument('aks_resource_group', options_list=['--aks-resourcegroup'])
             c.argument('source_kubeconfig', options_list=['--source-kubeconfig'])
             c.argument('target_kubeconfig', options_list=['--target-kubeconfig'])
         with self.argument_context('kube export') as c:

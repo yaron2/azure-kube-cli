@@ -8,24 +8,28 @@ import uuid
 import os
 
 
-def get_clusters_info(source_acs_name, target_aks_name):
-    source_acs = az_cli(['acs', 'list', '--query', "[?name=='{0}'] | [0]".format(source_acs_name)])
+def get_clusters_info(source_acs_name, acs_resourcegroup, target_aks_name, aks_resourcegroup):
+    acs_clusters = az_cli(['acs', 'list'])
+    filtered_acs = [c for c in acs_clusters if c['resourceGroup'].lower() == acs_resourcegroup and c['name'] == source_acs_name]
 
-    if not source_acs:
+    if not filtered_acs:
         raise CLIError(
             'ACS Cluster with name {0} not found'.format(source_acs_name))
 
+    source_acs = filtered_acs[0]
     print("Found source ACS cluster with name {0}".format(source_acs_name))
 
     source_resource_group = source_acs['resourceGroup']
     source_location = source_acs['location']
 
-    target_aks = az_cli(['aks', 'list', '--query', "[?name=='{0}'] | [0]".format(target_aks_name)])
+    aks_clusters = az_cli(['aks', 'list'])
+    filtered_aks = [c for c in aks_clusters if c['resourceGroup'].lower() == aks_resourcegroup and c['name'] == target_aks_name]
 
-    if not target_aks:
+    if not filtered_aks:
         raise CLIError(
             'AKS Cluster with name {0} not found'.format(target_aks_name))
 
+    target_aks = filtered_aks[0]
     print("Found target AKS cluster with name {0}".format(target_aks_name))
 
     target_resource_group = target_aks['resourceGroup']
@@ -71,8 +75,8 @@ def export_cluster_to_dir(kubeconfig_path, output_dir = os.getcwd()):
     print("Cluster exported successfully")
 
 
-def copy_volumes(source_acs_name, target_aks_name, source_kubeconfig=None, target_kubeconfig=None):
-    clusters_info = get_clusters_info(source_acs_name, target_aks_name)
+def copy_volumes(source_acs_name, target_aks_name, acs_resourcegroup, aks_resourcegroup, source_kubeconfig=None, target_kubeconfig=None):
+    clusters_info = get_clusters_info(source_acs_name, acs_resourcegroup,  target_aks_name, aks_resourcegroup)
 
     remove_source_config = False
     remove_target_config = False

@@ -104,7 +104,7 @@ def get_cluster_resources(kubeconfig_path):
 
 
 def fix_kubernetes_objects(items, api_version = 'v1'):
-    # bypass kubernetes python client bug...
+    # bypass kubernetes python client bug... Kind is not returned for list opeerations
     for item in items:
         item_type = str(type(item))
         item.kind = type_map[re.findall(r"'(.*?)'", item_type, re.DOTALL)[0]]

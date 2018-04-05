@@ -13,6 +13,12 @@ helps['kube copy-volumes'] = """
         - name: --target-aks-name
           type: string
           short-summary: Name of the target AKS instance
+        - name: --acs-resourcegroup
+          type: string
+          short-summary: Name of the ACS cluster resource group
+        - name: --aks-resourcegroup
+          type: string
+          short-summary: Name of the AKS cluster resource group
         - name: --source-kubeconfig
           type: string
           short-summary: Path to the source cluster kubeconfig file
@@ -22,7 +28,7 @@ helps['kube copy-volumes'] = """
     examples:
         - name: Copy all Persistent Volumes from ACS to AKS
           text: >
-            az kube copy-volumes --source-acs-name=acs-cluster --target-aks-name=aks-cluster
+            az kube copy-volumes --source-acs-name=acs-cluster --target-aks-name=aks-cluster --acs-resourcegroup=rg1 --aks-resourcegroup=rg2
         - name: Copy using a custom Kubeconfig file
           text: >
             az kube copy-volumes --source-kubeconfig=/.myconfig --source-acs-name=acs-cluster --target-aks-name=aks-cluster
