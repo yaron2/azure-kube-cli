@@ -16,6 +16,16 @@ The CLI extension will let you:
 - Move Managed Data Disks from ACS to AKS
 - Migrate clusters between regions
 
+### Cluster Backup Features
+
+The following platforms are supported for cluster backup functionality:
+
+- AKS
+- ACS
+- ACS-Engine
+- OpenShift
+- Tectonic
+
 ## Installation
 
 ### Step 0: Install/Update Azure CLI
