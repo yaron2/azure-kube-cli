@@ -40,7 +40,7 @@ def run_cli_command(cmd, return_as_json=True, empty_json_as_error=False, env=Non
     except CalledProcessError as ex:
         logger.error('command failed: %s', cmd)
         logger.error('output: %s', ex.output)
-        raise ex
+        pass
     except:
         logger.error('command ended with an error: %s', cmd)
         raise
