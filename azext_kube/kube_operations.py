@@ -9,19 +9,21 @@ import os
 
 
 def get_clusters_info(source_acs_name, acs_resourcegroup, target_aks_name, aks_resourcegroup):
-    # acs_clusters = az_cli(['acs', 'list'])
-    # filtered_acs = [c for c in acs_clusters if c['resourceGroup'].lower() == acs_resourcegroup and c['name'] == source_acs_name]
+    acs_clusters = az_cli(['acs', 'list'])
+    if acs_clusters:
+        filtered_acs = [c for c in acs_clusters if c['resourceGroup'].lower() == acs_resourcegroup and c['name'] == source_acs_name]
 
-    # if not filtered_acs:
-    #     raise CLIError(
-    #         'ACS Cluster with name {0} not found'.format(source_acs_name))
+        if not filtered_acs:
+            raise CLIError(
+                'ACS Cluster with name {0} not found'.format(source_acs_name))
 
-    # source_acs = filtered_acs[0]
-    # print("Found source ACS cluster with name {0}".format(source_acs_name))
-
-    source_resource_group = acs_resourcegroup
-    source_location = source_acs_location
-
+        source_acs = filtered_acs[0]
+        print("Found source ACS cluster with name {0}".format(source_acs_name))
+        source_resource_group = source_acs['resourceGroup']
+        source_location = source_acs['location']
+    else:
+        source_resource_group = acs_resourcegroup
+        source_location = raw_input("ACS Location:")
     aks_clusters = az_cli(['aks', 'list'])
     filtered_aks = [c for c in aks_clusters if c['resourceGroup'].lower() == aks_resourcegroup and c['name'] == target_aks_name]
 
