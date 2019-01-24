@@ -19,8 +19,8 @@ def get_clusters_info(source_acs_name, acs_resourcegroup, target_aks_name, aks_r
     # source_acs = filtered_acs[0]
     # print("Found source ACS cluster with name {0}".format(source_acs_name))
 
-    source_resource_group = 'kuben-pf-acs'
-    source_location = 'centralus'
+    source_resource_group = acs_resourcegroup
+    source_location = source_acs_location
 
     aks_clusters = az_cli(['aks', 'list'])
     filtered_aks = [c for c in aks_clusters if c['resourceGroup'].lower() == aks_resourcegroup and c['name'] == target_aks_name]
@@ -95,11 +95,11 @@ def copy_volumes(source_acs_name, target_aks_name, acs_resourcegroup, aks_resour
             disk_name = pv.spec.azure_disk.disk_name
             disk = storage.copy_disk_to_disk(clusters_info.acs_resource_group, disk_name ,clusters_info.aks_mc_resource_group)
             pv.target_disk_name = disk['name']
+            pv.target_disk_uri = disk['id']
         else:
             disk_uri = pv.spec.azure_disk.disk_uri
             disk = storage.copy_vhd_to_disk(disk_uri, clusters_info.aks_mc_resource_group)
             pv.target_disk_uri = disk['creationData']['sourceUri']
-
     print("Disks migration successful")
     print("Starting Persistent Volume creation on target cluster")
 

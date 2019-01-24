@@ -33,12 +33,11 @@ def create_pv_from_current_pv(kubeconfig_path, pv):
     newpv.spec.capacity = pv.spec.capacity
     newpv.spec.access_modes = pv.spec.access_modes
     newpv.spec.azure_disk = pv.spec.azure_disk
-
+    newpv.spec.azure_disk.disk_uri = pv.target_disk_uri
     if pv.spec.azure_disk.kind.lower() == 'managed':
         newpv.spec.azure_disk.disk_name = pv.target_disk_name
     else:
         newpv.spec.azure_disk.disk_uri = pv.target_disk_uri
-
     try:
         v1.create_persistent_volume(newpv)
     except ApiException:

@@ -18,6 +18,9 @@ helps['kube copy-volumes'] = """
         - name: --target-aks-name
           type: string
           short-summary: Name of the target AKS instance
+        - name: --source-acs-location
+          type: string
+          short-summary: Location of the source ACS instance
         - name: --acs-resourcegroup
           type: string
           short-summary: Name of the ACS cluster resource group
