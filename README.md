@@ -12,6 +12,7 @@ The CLI extension will let you:
 
 - Take a snapshot of cluster state for back/restore purposes
 - Migrate Persistent Volumes resources from ACS to AKS
+- Migrate Persistent Volumes resources from AKS to AKS
 - Move Unmanaged Data Disks from ACS to AKS 
 - Move Managed Data Disks from ACS to AKS
 - Migrate clusters between regions
@@ -54,6 +55,7 @@ Group
 
 Commands:
     copy-volumes: Copy Persistent Volumes from ACS to AKS.
+    copy-aks-volumes: Copy Persistent Volumes from AKS to AKS.
     export      : Export a Kubernetes cluster's resources to disk.
 ```
 
@@ -66,6 +68,10 @@ Commands:
 ### migrate and use your own source and target kubeconfigs
 
 `az kube copy-volumes --source-kubeconfig=~/.source --target-kubeconfig=~/.target --source-acs-name=myacs --target-aks-name=myaks`
+
+### migrate AKS cluster volumes to AKS
+
+`az kube copy-aks-volumes --source-aks-name test-kube-source --source-aks-resourcegroup test-kube-source --target-aks-name test-kube-target --target-aks-resourcegroup test-kube-target --source-kubeconfig source.config --target-kubeconfig target.config`
 
 ### Backups a cluster's state
 
