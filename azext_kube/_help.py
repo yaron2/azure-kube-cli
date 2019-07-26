@@ -39,6 +39,40 @@ helps['kube copy-volumes'] = """
             az kube copy-volumes --source-kubeconfig=/.myconfig --source-acs-name=acs-cluster --target-aks-name=aks-cluster
 """
 
+helps['kube copy-aks-volumes'] = """
+    type: command
+    short-summary: Copy Persistent Volumes from one AKS to another AKS.
+    long-summary: >
+        Creates Managed Disks in target AKS resource group using storage snapshots and copies PV k8s resources from one AKS cluster to another AKS cluster.
+        Supports cross-region copies.
+    parameters:
+        - name: --source-aks-name
+          type: string
+          short-summary: Name of the source AKS instance
+        - name: --target-aks-name
+          type: string
+          short-summary: Name of the target AKS instance
+        - name: --source-aks-resourcegroup
+          type: string
+          short-summary: Name of the source AKS cluster resource group
+        - name: --target-aks-resourcegroup
+          type: string
+          short-summary: Name of the target AKS cluster resource group
+        - name: --source-kubeconfig
+          type: string
+          short-summary: Path to the source cluster kubeconfig file
+        - name: --target-kubeconfig
+          type: string
+          short-summary: Path to the target cluster kubeconfig file
+    examples:
+        - name: Copy all Persistent Volumes from ACS to AKS
+          text: >
+            az kube copy-aks-volumes --source-aks-name=source-aks-cluster --target-aks-name=target-aks-cluster --source-aks-resourcegroup=rg1 --target-aks-resourcegroup=rg2
+        - name: Copy using a custom Kubeconfig file
+          text: >
+            az kube copy-aks-volumes --source-kubeconfig=/.myconfig --source-aks-name=source-aks-cluster-name --target-aks-name=target-aks-cluster-name
+"""
+
 helps['kube export'] = """
     type: command
     short-summary: Export a Kubernetes cluster's resources to disk
