@@ -81,6 +81,12 @@ Commands:
 
 `az kube export --kubeconfig=./myconfig --output-dir=./backup`
 
+### Restore or migrate a cluster's state
+
+Once you have executed the kube export command, you will see the exported configuration in the directory executed or custom directory path with a file named cluster.json. Execute the kubectl apply on the cluster.json to import the saved cluster configuration. Make sure your config has the correct cluster context you want to restore to.
+
+`kubectl apply -f cluster.json
+
 ## Development
 
 Extension development depends on a local Azure CLI dev environment. First, follow these [instructions](https://github.com/Azure/azure-cli/blob/master/doc/configuring_your_machine.md) to prepare your machine.
