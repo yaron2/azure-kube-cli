@@ -83,7 +83,7 @@ Commands:
 
 ### Restore or migrate a cluster's state
 
-Once you have executed the kube export command, you will see the exported configuration in the directory executed or custom directory path with a file named cluster.json. Execute the kubectl apply on the cluster.json to import the saved cluster configuration. Make sure your config has the correct cluster context you want to restore to.
+Once you have executed the kube export command, the cluster's configuation will be generated and will be exported to a configuration file named cluster.json in the directory executed where executed or in the custom directory path specified. Execute the kubectl apply command on the cluster.json to import the saved cluster configuration. Make sure your config has the correct cluster context you want to restore to.
 
 `kubectl apply -f cluster.json`
 
